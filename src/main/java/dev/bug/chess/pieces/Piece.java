@@ -4,6 +4,7 @@ import dev.bug.chess.Alliance;
 import dev.bug.chess.board.Board;
 import dev.bug.chess.board.Move;
 
+import java.util.Collection;
 import java.util.List;
 
 /**
@@ -19,5 +20,9 @@ public abstract class Piece {
         this.pieceAlliance = pieceAlliance;
     }
 
-    public abstract List<Move> calculateLegalMoves(final Board board);
+    public Alliance getPieceAlliance() {
+        return pieceAlliance;
+    }
+
+    public abstract Collection<Move> calculateLegalMoves(final Board board);
 }
