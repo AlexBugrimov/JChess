@@ -6,6 +6,7 @@ import dev.bug.chess.pieces.Piece;
 import java.util.HashMap;
 import java.util.Map;
 
+import static dev.bug.chess.board.BoardUtils.NUM_TILES;
 import static java.util.Objects.nonNull;
 
 /**
@@ -17,7 +18,7 @@ public abstract class Tile {
 
     private static Map<Integer, EmptyTile> createAllPossibleEmptyTiles() {
         final Map<Integer, EmptyTile> emptyTiles = new HashMap<>();
-        for (int i = 0; i < 64; i++) {
+        for (int i = 0; i < NUM_TILES; i++) {
             emptyTiles.put(i, new EmptyTile(i));
         }
         return ImmutableMap.copyOf(emptyTiles);
