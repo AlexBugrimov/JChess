@@ -1,16 +1,36 @@
 package dev.bug.chess.board;
 
+import com.google.common.collect.ImmutableMap;
 import dev.bug.chess.pieces.Piece;
+
+import java.util.HashMap;
+import java.util.Map;
+
+import static java.util.Objects.nonNull;
 
 /**
  * Плитка
  */
 public abstract class Tile {
 
+    private static final Map<Integer, EmptyTile> EMPTY_TILES = createAllPossibleEmptyTiles();
+
+    private static Map<Integer, EmptyTile> createAllPossibleEmptyTiles() {
+        final Map<Integer, EmptyTile> emptyTiles = new HashMap<>();
+        for (int i = 0; i < 64; i++) {
+            emptyTiles.put(i, new EmptyTile(i));
+        }
+        return ImmutableMap.copyOf(emptyTiles);
+    }
+
     protected final int tileCoordinate;
 
-    Tile(int tileCoordinate) {
+    private Tile(int tileCoordinate) {
         this.tileCoordinate = tileCoordinate;
+    }
+
+    public static Tile createTile(final int tileCoordinate, final Piece piece) {
+        return nonNull(piece) ? new OccupiedTile(tileCoordinate, piece) : EMPTY_TILES.get(tileCoordinate);
     }
 
     public abstract boolean isTileOccupied();
