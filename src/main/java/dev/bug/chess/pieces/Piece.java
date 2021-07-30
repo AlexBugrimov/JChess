@@ -5,7 +5,6 @@ import dev.bug.chess.board.Board;
 import dev.bug.chess.board.Move;
 
 import java.util.Collection;
-import java.util.List;
 
 /**
  * Часть
